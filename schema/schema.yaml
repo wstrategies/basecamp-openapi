@@ -1,0 +1,202 @@
+openapi: 3.0.3
+
+info:
+  title: Basecamp4 API
+  version: 1.0.0
+  description: This is an API schema for the Basecamp4 API. It is used to generate client libraries to interact with the API.
+  contact:
+    name: Barry Molina
+    email: barry@wstrategies.co
+  license:
+    name: Apache 2.0
+    url: http://www.apache.org/licenses/LICENSE-2.0.html
+externalDocs:
+  description: Find out more about Basecamp4 API
+  url: https://github.com/basecamp/bc3-api
+servers:
+  - url: https://3.basecampapi.com/{account_id}
+    variables:
+      account_id:
+        description: Your Basecamp4 account ID (retrieve from the authorization endpoint)
+        default: "9999999"
+    description: Basecamp4 API
+  - url: https://launchpad.37signals.com
+    description: Basecamp4 API authentication
+  - url: http://localhost:8089/launchpad
+    description: Proxy server to 'https://launchpad.37signals.com' to avoid CORS issues
+  - url: http://localhost:8089/basecampapi/{account_id}
+    description: Proxy server to 'https://3.basecampapi.com' to avoid CORS issues
+    variables:
+      account_id:
+        description: Your Basecamp4 account ID (retrieve from the authorization endpoint)
+        default: "9999999"
+security:
+  - BearerAuth: []
+paths:
+  /authorization.json:
+    get:
+      summary: Get authorization
+      description: Get the authorization for the Basecamp4 API
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Authorization"
+  /projects.json:
+    get:
+      summary: Get projects
+      description: Get the projects for the Basecamp4 API
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Project"
+components:
+  schemas:
+    Authorization:
+      type: object
+      properties:
+        expires_at:
+          type: string
+          format: date-time
+        identity:
+          $ref: "#/components/schemas/Identity"
+        accounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/Account"
+    Identity:
+      type: object
+      properties:
+        id:
+          type: integer
+        first_name:
+          type: string
+        last_name:
+          type: string
+        email_address:
+          type: string
+    Account:
+      type: object
+      properties:
+        product:
+          type: string
+        id:
+          type: integer
+        name:
+          type: string
+        href:
+          type: string
+        app_href:
+          type: string
+    DockItem:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier for the dock item
+        title:
+          type: string
+          description: Display title of the dock item
+        name:
+          type: string
+          description: System name of the dock item
+        enabled:
+          type: boolean
+          description: Indicates if the dock item is enabled
+        position:
+          type: integer
+          format: int32
+          description: Position of the dock item in the UI, null if not applicable
+          nullable: true
+        url:
+          type: string
+          format: uri
+          description: API URL for the dock item
+        app_url:
+          type: string
+          format: uri
+          description: Web application URL for the dock item
+      required:
+        - id
+        - title
+        - name
+        - enabled
+        - url
+        - app_url
+    Project:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier for the project
+        status:
+          type: string
+          description: Current status of the project
+        created_at:
+          type: string
+          format: date-time
+          description: Timestamp of project creation
+        updated_at:
+          type: string
+          format: date-time
+          description: Timestamp of last project update
+        name:
+          type: string
+          description: Name of the project
+        description:
+          type: string
+          description: Detailed description of the project
+        purpose:
+          type: string
+          description: Purpose of the project
+        clients_enabled:
+          type: boolean
+          description: Indicates if clients are enabled for the project
+        bookmark_url:
+          type: string
+          format: uri
+          description: URL for bookmarking the project
+        url:
+          type: string
+          format: uri
+          description: API URL for the project
+        app_url:
+          type: string
+          format: uri
+          description: Web application URL for the project
+        dock:
+          type: array
+          items:
+            $ref: "#/components/schemas/DockItem"
+          description: Collection of dock items associated with the project
+        bookmarked:
+          type: boolean
+          description: Indicates if the project is bookmarked
+      required:
+        - id
+        - status
+        - created_at
+        - updated_at
+        - name
+        - description
+        - purpose
+        - clients_enabled
+        - bookmark_url
+        - url
+        - app_url
+        - dock
+        - bookmarked
+
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
