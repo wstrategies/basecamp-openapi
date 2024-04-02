@@ -12,7 +12,13 @@ The SDK is generated using the [OpenAPI Generator](https://github.com/OpenAPIToo
 
 ## Development
 
-To generate the SDK, run the following command:
+To generate the SDK, first install the OpenAPI Generator CLI
+
+```bash
+npm install @openapitools/openapi-generator-cli -g
+```
+
+Then run the following command to generate the Python SDK
 
 ```bash
 ./bin/generate_python_sdk.sh
