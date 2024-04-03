@@ -57,6 +57,80 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/Project"
+  /buckets/{project_id}/card_tables/{card_table_id}.json:
+    get:
+      summary: Get card table
+      description: Get the card table for the Basecamp4 API
+      parameters:
+        - name: project_id
+          in: path
+          description: The project ID
+          required: true
+          schema:
+            type: integer
+        - name: card_table_id
+          in: path
+          description: The card table ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardTable"
+  /buckets/{project_id}/card_tables/columns/{card_table_column_id}.json:
+    get:
+      summary: Get card table column
+      description: Get the card table column for the Basecamp4 API
+      parameters:
+        - name: project_id
+          in: path
+          description: The project ID
+          required: true
+          schema:
+            type: integer
+        - name: card_table_column_id
+          in: path
+          description: The card table column ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardTableColumn"
+  /buckets/{project_id}/card_tables/lists/{card_table_column_id}/cards.json:
+    get:
+      summary: Get card table cards
+      description: Get the card table cards for the Basecamp4 API
+      parameters:
+        - name: project_id
+          in: path
+          description: The project ID
+          required: true
+          schema:
+            type: integer
+        - name: card_table_column_id
+          in: path
+          description: The card table column ID
+          required: true
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/CardTableCard"
 components:
   schemas:
     Authorization:
