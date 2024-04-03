@@ -195,7 +195,272 @@ components:
         - app_url
         - dock
         - bookmarked
-
+    CardTable:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        visible_to_clients:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        title:
+          type: string
+        inherits_status:
+          type: boolean
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+        bookmark_url:
+          type: string
+          format: uri
+        subscription_url:
+          type: string
+          format: uri
+        bucket:
+          $ref: "#/components/schemas/Bucket"
+        creator:
+          $ref: "#/components/schemas/Person"
+        subscribers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+        lists:
+          type: array
+          items:
+            $ref: "#/components/schemas/CardTableColumn"
+      required:
+        - id
+        - status
+        - created_at
+        - updated_at
+        - title
+        - type
+        - url
+        - app_url
+    Bucket:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+      required:
+        - id
+        - name
+        - type
+    Person:
+      type: object
+      properties:
+        id:
+          type: integer
+        attachable_sgid:
+          type: string
+        name:
+          type: string
+        email_address:
+          type: string
+        personable_type:
+          type: string
+        title:
+          type: string
+        bio:
+          type: string
+        location:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        admin:
+          type: boolean
+        owner:
+          type: boolean
+        client:
+          type: boolean
+        employee:
+          type: boolean
+        time_zone:
+          type: string
+        avatar_url:
+          type: string
+          format: uri
+        company:
+          $ref: "#/components/schemas/Company"
+        can_manage_projects:
+          type: boolean
+        can_manage_people:
+          type: boolean
+      required:
+        - id
+        - name
+        - email_address
+        - personable_type
+        - created_at
+        - updated_at
+    Company:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      required:
+        - id
+        - name
+    CardTableColumn:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        visible_to_clients:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        title:
+          type: string
+        inherits_status:
+          type: boolean
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+        bookmark_url:
+          type: string
+          format: uri
+        parent:
+          $ref: "#/components/schemas/CardTable"
+        bucket:
+          $ref: "#/components/schemas/Bucket"
+        creator:
+          $ref: "#/components/schemas/Person"
+        description:
+          type: string
+        subscribers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+        color:
+          type: string
+        cards_count:
+          type: integer
+        comment_count:
+          type: integer
+        cards_url:
+          type: string
+          format: uri
+      required:
+        - id
+        - status
+        - created_at
+        - updated_at
+        - title
+        - type
+        - url
+        - app_url
+    CardTableCard:
+      type: object
+      properties:
+        id:
+          type: integer
+        status:
+          type: string
+        visible_to_clients:
+          type: boolean
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+        title:
+          type: string
+        inherits_status:
+          type: boolean
+        type:
+          type: string
+        url:
+          type: string
+          format: uri
+        app_url:
+          type: string
+          format: uri
+        bookmark_url:
+          type: string
+          format: uri
+        subscription_url:
+          type: string
+          format: uri
+        comments_count:
+          type: integer
+        comments_url:
+          type: string
+          format: uri
+        position:
+          type: integer
+        parent:
+          $ref: "#/components/schemas/CardTableColumn"
+        bucket:
+          $ref: "#/components/schemas/Bucket"
+        creator:
+          $ref: "#/components/schemas/Person"
+        description:
+          type: string
+        completed:
+          type: boolean
+        content:
+          type: string
+        due_on:
+          type: string
+          format: date
+          nullable: true
+        assignees:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+        completion_subscribers:
+          type: array
+          items:
+            $ref: "#/components/schemas/Person"
+        completion_url:
+          type: string
+          format: uri
+        comment_count:
+          type: integer
+      required:
+        - id
+        - status
+        - created_at
+        - updated_at
+        - title
+        - type
+        - url
+        - app_url
   securitySchemes:
     BearerAuth:
       type: http
