@@ -35,6 +35,7 @@ security:
 paths:
   /authorization.json:
     get:
+      operationId: getAuthorization
       summary: Get authorization
       description: Get the authorization for the Basecamp4 API
       responses:
@@ -46,6 +47,7 @@ paths:
                 $ref: "#/components/schemas/Authorization"
   /projects.json:
     get:
+      operationId: getProjects
       summary: Get projects
       description: Get the projects for the Basecamp4 API
       responses:
@@ -59,6 +61,7 @@ paths:
                   $ref: "#/components/schemas/Project"
   /buckets/{project_id}/card_tables/{card_table_id}.json:
     get:
+      operationId: getCardTable
       summary: Get card table
       description: Get the card table for the Basecamp4 API
       parameters:
@@ -83,6 +86,7 @@ paths:
                 $ref: "#/components/schemas/CardTable"
   /buckets/{project_id}/card_tables/columns/{card_table_column_id}.json:
     get:
+      operationId: getCardTableColumn
       summary: Get card table column
       description: Get the card table column for the Basecamp4 API
       parameters:
@@ -107,6 +111,7 @@ paths:
                 $ref: "#/components/schemas/CardTableColumn"
   /buckets/{project_id}/card_tables/lists/{card_table_column_id}/cards.json:
     get:
+      operationId: getCardTableCards
       summary: Get card table cards
       description: Get the card table cards for the Basecamp4 API
       parameters:

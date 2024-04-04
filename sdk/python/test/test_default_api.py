@@ -27,15 +27,36 @@ class TestDefaultApi(unittest.TestCase):
     def tearDown(self) -> None:
         pass
 
-    def test_authorization_json_get(self) -> None:
-        """Test case for authorization_json_get
+    def test_get_authorization(self) -> None:
+        """Test case for get_authorization
 
         Get authorization
         """
         pass
 
-    def test_projects_json_get(self) -> None:
-        """Test case for projects_json_get
+    def test_get_card_table(self) -> None:
+        """Test case for get_card_table
+
+        Get card table
+        """
+        pass
+
+    def test_get_card_table_cards(self) -> None:
+        """Test case for get_card_table_cards
+
+        Get card table cards
+        """
+        pass
+
+    def test_get_card_table_column(self) -> None:
+        """Test case for get_card_table_column
+
+        Get card table column
+        """
+        pass
+
+    def test_get_projects(self) -> None:
+        """Test case for get_projects
 
         Get projects
         """

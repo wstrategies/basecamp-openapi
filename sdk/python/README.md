@@ -79,11 +79,11 @@ with basecamp4_python_sdk.ApiClient(configuration) as api_client:
 
     try:
         # Get authorization
-        api_response = api_instance.authorization_json_get()
-        print("The response of DefaultApi->authorization_json_get:\n")
+        api_response = api_instance.get_authorization()
+        print("The response of DefaultApi->get_authorization:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DefaultApi->authorization_json_get: %s\n" % e)
+        print("Exception when calling DefaultApi->get_authorization: %s\n" % e)
 
 ```
 
@@ -93,16 +93,25 @@ All URIs are relative to *https://3.basecampapi.com/9999999*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**authorization_json_get**](docs/DefaultApi.md#authorization_json_get) | **GET** /authorization.json | Get authorization
-*DefaultApi* | [**projects_json_get**](docs/DefaultApi.md#projects_json_get) | **GET** /projects.json | Get projects
+*DefaultApi* | [**get_authorization**](docs/DefaultApi.md#get_authorization) | **GET** /authorization.json | Get authorization
+*DefaultApi* | [**get_card_table**](docs/DefaultApi.md#get_card_table) | **GET** /buckets/{project_id}/card_tables/{card_table_id}.json | Get card table
+*DefaultApi* | [**get_card_table_cards**](docs/DefaultApi.md#get_card_table_cards) | **GET** /buckets/{project_id}/card_tables/lists/{card_table_column_id}/cards.json | Get card table cards
+*DefaultApi* | [**get_card_table_column**](docs/DefaultApi.md#get_card_table_column) | **GET** /buckets/{project_id}/card_tables/columns/{card_table_column_id}.json | Get card table column
+*DefaultApi* | [**get_projects**](docs/DefaultApi.md#get_projects) | **GET** /projects.json | Get projects
 
 
 ## Documentation For Models
 
  - [Account](docs/Account.md)
  - [Authorization](docs/Authorization.md)
+ - [Bucket](docs/Bucket.md)
+ - [CardTable](docs/CardTable.md)
+ - [CardTableCard](docs/CardTableCard.md)
+ - [CardTableColumn](docs/CardTableColumn.md)
+ - [Company](docs/Company.md)
  - [DockItem](docs/DockItem.md)
  - [Identity](docs/Identity.md)
+ - [Person](docs/Person.md)
  - [Project](docs/Project.md)
 
 
