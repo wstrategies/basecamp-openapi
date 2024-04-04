@@ -35,9 +35,12 @@ from basecamp4_python_sdk.exceptions import ApiException
 from basecamp4_python_sdk.models.account import Account
 from basecamp4_python_sdk.models.authorization import Authorization
 from basecamp4_python_sdk.models.bucket import Bucket
+from basecamp4_python_sdk.models.card_create_request import CardCreateRequest
+from basecamp4_python_sdk.models.card_move_request import CardMoveRequest
 from basecamp4_python_sdk.models.card_table import CardTable
 from basecamp4_python_sdk.models.card_table_card import CardTableCard
 from basecamp4_python_sdk.models.card_table_column import CardTableColumn
+from basecamp4_python_sdk.models.card_update_request import CardUpdateRequest
 from basecamp4_python_sdk.models.company import Company
 from basecamp4_python_sdk.models.dock_item import DockItem
 from basecamp4_python_sdk.models.identity import Identity

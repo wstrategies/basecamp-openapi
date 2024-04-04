@@ -43,7 +43,6 @@ class TestCompany(unittest.TestCase):
         else:
             return Company(
                 id = 56,
-                name = '',
         )
         """
 

@@ -84,7 +84,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CardTable"
-  /buckets/{project_id}/card_tables/columns/{card_table_column_id}.json:
+        "404":
+          description: Not Found
+  /buckets/{project_id}/card_tables/columns/{column_id}.json:
     get:
       operationId: getCardTableColumn
       summary: Get card table column
@@ -96,7 +98,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: card_table_column_id
+        - name: column_id
           in: path
           description: The card table column ID
           required: true
@@ -109,7 +111,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CardTableColumn"
-  /buckets/{project_id}/card_tables/lists/{card_table_column_id}/cards.json:
+        "404":
+          description: Not Found
+  /buckets/{project_id}/card_tables/lists/{column_id}/cards.json:
     get:
       operationId: getCardTableCards
       summary: Get card table cards
@@ -121,7 +125,7 @@ paths:
           required: true
           schema:
             type: integer
-        - name: card_table_column_id
+        - name: column_id
           in: path
           description: The card table column ID
           required: true
@@ -136,6 +140,108 @@ paths:
                 type: array
                 items:
                   $ref: "#/components/schemas/CardTableCard"
+        "404":
+          description: Not Found
+    post:
+      operationId: createCardTableCard
+      summary: Create a card
+      description: Creates a new card in the specified card table.
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The project ID.
+        - name: column_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The column ID.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CardCreateRequest"
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardTableCard"
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+  /buckets/{project_id}/card_tables/cards/{card_id}.json:
+    put:
+      operationId: updateCardTableCard
+      summary: Update a card
+      description: Allows changing of the card with a specified ID in the project with a specified ID.
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The project ID.
+        - name: card_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The card ID.
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CardUpdateRequest"
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CardTableCard"
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
+  /buckets/{project_id}/card_tables/cards/{card_id}/moves.json:
+    post:
+      operationId: moveCardTableCard
+      summary: Move a card
+      description: Allows moving of a card to a different column within the same card table.
+      parameters:
+        - name: project_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The project ID.
+        - name: card_id
+          in: path
+          required: true
+          schema:
+            type: integer
+          description: The card ID to move.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CardMoveRequest"
+      responses:
+        "204":
+          description: No content
+        "400":
+          description: Bad Request
+        "404":
+          description: Not Found
 components:
   schemas:
     Authorization:
@@ -262,18 +368,6 @@ components:
           description: Indicates if the project is bookmarked
       required:
         - id
-        - status
-        - created_at
-        - updated_at
-        - name
-        - description
-        - purpose
-        - clients_enabled
-        - bookmark_url
-        - url
-        - app_url
-        - dock
-        - bookmarked
     CardTable:
       type: object
       properties:
@@ -321,13 +415,6 @@ components:
             $ref: "#/components/schemas/CardTableColumn"
       required:
         - id
-        - status
-        - created_at
-        - updated_at
-        - title
-        - type
-        - url
-        - app_url
     Bucket:
       type: object
       properties:
@@ -339,8 +426,6 @@ components:
           type: string
       required:
         - id
-        - name
-        - type
     Person:
       type: object
       properties:
@@ -387,11 +472,6 @@ components:
           type: boolean
       required:
         - id
-        - name
-        - email_address
-        - personable_type
-        - created_at
-        - updated_at
     Company:
       type: object
       properties:
@@ -401,7 +481,6 @@ components:
           type: string
       required:
         - id
-        - name
     CardTableColumn:
       type: object
       properties:
@@ -455,13 +534,6 @@ components:
           format: uri
       required:
         - id
-        - status
-        - created_at
-        - updated_at
-        - title
-        - type
-        - url
-        - app_url
     CardTableCard:
       type: object
       properties:
@@ -533,13 +605,53 @@ components:
           type: integer
       required:
         - id
-        - status
-        - created_at
-        - updated_at
+    CardCreateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the card.
+        content:
+          type: string
+          description: Content containing information about the card. See Basecamp Rich text guide for what HTML tags are allowed.
+        due_on:
+          type: string
+          format: date
+          description: Due date (ISO 8601) of the card.
+        notify:
+          type: boolean
+          default: false
+          description: Whether to notify assignees, value true or false. Defaults to false.
+      required:
         - title
-        - type
-        - url
-        - app_url
+    CardMoveRequest:
+      type: object
+      required:
+        - column_id
+      properties:
+        column_id:
+          type: integer
+          description: The column ID of the destination column.
+
+    CardUpdateRequest:
+      type: object
+      properties:
+        title:
+          type: string
+          description: Title of the card.
+        content:
+          type: string
+          description: Content containing information about the card. See Basecamp Rich text guide for what HTML tags are allowed.
+        due_on:
+          type: string
+          format: date
+          description: Due date (ISO 8601) of the card.
+        assignee_ids:
+          type: array
+          items:
+            type: integer
+          description: An array of people that will be assigned to this card. Please see the Get people endpoints to retrieve them.
+
   securitySchemes:
     BearerAuth:
       type: http

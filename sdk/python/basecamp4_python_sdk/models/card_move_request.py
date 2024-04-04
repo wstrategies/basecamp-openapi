@@ -19,20 +19,20 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr
+from typing import Any, ClassVar, Dict, List
+from pydantic import BaseModel, StrictInt
+from pydantic import Field
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Company(BaseModel):
+class CardMoveRequest(BaseModel):
     """
-    Company
+    CardMoveRequest
     """ # noqa: E501
-    id: StrictInt
-    name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name"]
+    column_id: StrictInt = Field(description="The column ID of the destination column.")
+    __properties: ClassVar[List[str]] = ["column_id"]
 
     model_config = {
         "populate_by_name": True,
@@ -52,7 +52,7 @@ class Company(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Company from a JSON string"""
+        """Create an instance of CardMoveRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +75,7 @@ class Company(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Company from a dict"""
+        """Create an instance of CardMoveRequest from a dict"""
         if obj is None:
             return None
 
@@ -83,8 +83,7 @@ class Company(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name")
+            "column_id": obj.get("column_id")
         })
         return _obj
 

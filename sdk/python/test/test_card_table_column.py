@@ -186,13 +186,6 @@ class TestCardTableColumn(unittest.TestCase):
         else:
             return CardTableColumn(
                 id = 56,
-                status = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                title = '',
-                type = '',
-                url = '',
-                app_url = '',
         )
         """
 

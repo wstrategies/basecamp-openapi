@@ -33,15 +33,15 @@ class CardTable(BaseModel):
     CardTable
     """ # noqa: E501
     id: StrictInt
-    status: StrictStr
+    status: Optional[StrictStr] = None
     visible_to_clients: Optional[StrictBool] = None
-    created_at: datetime
-    updated_at: datetime
-    title: StrictStr
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
+    title: Optional[StrictStr] = None
     inherits_status: Optional[StrictBool] = None
-    type: StrictStr
-    url: StrictStr
-    app_url: StrictStr
+    type: Optional[StrictStr] = None
+    url: Optional[StrictStr] = None
+    app_url: Optional[StrictStr] = None
     bookmark_url: Optional[StrictStr] = None
     subscription_url: Optional[StrictStr] = None
     bucket: Optional[Bucket] = None

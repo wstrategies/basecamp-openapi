@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 from datetime import datetime
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictBool, StrictInt, StrictStr
 from pydantic import Field
 from basecamp4_python_sdk.models.dock_item import DockItem
@@ -33,18 +33,18 @@ class Project(BaseModel):
     Project
     """ # noqa: E501
     id: StrictInt = Field(description="Unique identifier for the project")
-    status: StrictStr = Field(description="Current status of the project")
-    created_at: datetime = Field(description="Timestamp of project creation")
-    updated_at: datetime = Field(description="Timestamp of last project update")
-    name: StrictStr = Field(description="Name of the project")
-    description: StrictStr = Field(description="Detailed description of the project")
-    purpose: StrictStr = Field(description="Purpose of the project")
-    clients_enabled: StrictBool = Field(description="Indicates if clients are enabled for the project")
-    bookmark_url: StrictStr = Field(description="URL for bookmarking the project")
-    url: StrictStr = Field(description="API URL for the project")
-    app_url: StrictStr = Field(description="Web application URL for the project")
-    dock: List[DockItem] = Field(description="Collection of dock items associated with the project")
-    bookmarked: StrictBool = Field(description="Indicates if the project is bookmarked")
+    status: Optional[StrictStr] = Field(default=None, description="Current status of the project")
+    created_at: Optional[datetime] = Field(default=None, description="Timestamp of project creation")
+    updated_at: Optional[datetime] = Field(default=None, description="Timestamp of last project update")
+    name: Optional[StrictStr] = Field(default=None, description="Name of the project")
+    description: Optional[StrictStr] = Field(default=None, description="Detailed description of the project")
+    purpose: Optional[StrictStr] = Field(default=None, description="Purpose of the project")
+    clients_enabled: Optional[StrictBool] = Field(default=None, description="Indicates if clients are enabled for the project")
+    bookmark_url: Optional[StrictStr] = Field(default=None, description="URL for bookmarking the project")
+    url: Optional[StrictStr] = Field(default=None, description="API URL for the project")
+    app_url: Optional[StrictStr] = Field(default=None, description="Web application URL for the project")
+    dock: Optional[List[DockItem]] = Field(default=None, description="Collection of dock items associated with the project")
+    bookmarked: Optional[StrictBool] = Field(default=None, description="Indicates if the project is bookmarked")
     __properties: ClassVar[List[str]] = ["id", "status", "created_at", "updated_at", "name", "description", "purpose", "clients_enabled", "bookmark_url", "url", "app_url", "dock", "bookmarked"]
 
     model_config = {

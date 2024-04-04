@@ -7,14 +7,14 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | 
 **attachable_sgid** | **str** |  | [optional] 
-**name** | **str** |  | 
-**email_address** | **str** |  | 
-**personable_type** | **str** |  | 
+**name** | **str** |  | [optional] 
+**email_address** | **str** |  | [optional] 
+**personable_type** | **str** |  | [optional] 
 **title** | **str** |  | [optional] 
 **bio** | **str** |  | [optional] 
 **location** | **str** |  | [optional] 
-**created_at** | **datetime** |  | 
-**updated_at** | **datetime** |  | 
+**created_at** | **datetime** |  | [optional] 
+**updated_at** | **datetime** |  | [optional] 
 **admin** | **bool** |  | [optional] 
 **owner** | **bool** |  | [optional] 
 **client** | **bool** |  | [optional] 

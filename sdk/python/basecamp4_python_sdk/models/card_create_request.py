@@ -18,21 +18,24 @@ import pprint
 import re  # noqa: F401
 import json
 
-
+from datetime import date
 from typing import Any, ClassVar, Dict, List, Optional
-from pydantic import BaseModel, StrictInt, StrictStr
+from pydantic import BaseModel, StrictBool, StrictStr
+from pydantic import Field
 try:
     from typing import Self
 except ImportError:
     from typing_extensions import Self
 
-class Company(BaseModel):
+class CardCreateRequest(BaseModel):
     """
-    Company
+    CardCreateRequest
     """ # noqa: E501
-    id: StrictInt
-    name: Optional[StrictStr] = None
-    __properties: ClassVar[List[str]] = ["id", "name"]
+    title: StrictStr = Field(description="Title of the card.")
+    content: Optional[StrictStr] = Field(default=None, description="Content containing information about the card. See Basecamp Rich text guide for what HTML tags are allowed.")
+    due_on: Optional[date] = Field(default=None, description="Due date (ISO 8601) of the card.")
+    notify: Optional[StrictBool] = Field(default=False, description="Whether to notify assignees, value true or false. Defaults to false.")
+    __properties: ClassVar[List[str]] = ["title", "content", "due_on", "notify"]
 
     model_config = {
         "populate_by_name": True,
@@ -52,7 +55,7 @@ class Company(BaseModel):
 
     @classmethod
     def from_json(cls, json_str: str) -> Self:
-        """Create an instance of Company from a JSON string"""
+        """Create an instance of CardCreateRequest from a JSON string"""
         return cls.from_dict(json.loads(json_str))
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,7 +78,7 @@ class Company(BaseModel):
 
     @classmethod
     def from_dict(cls, obj: Dict) -> Self:
-        """Create an instance of Company from a dict"""
+        """Create an instance of CardCreateRequest from a dict"""
         if obj is None:
             return None
 
@@ -83,8 +86,10 @@ class Company(BaseModel):
             return cls.model_validate(obj)
 
         _obj = cls.model_validate({
-            "id": obj.get("id"),
-            "name": obj.get("name")
+            "title": obj.get("title"),
+            "content": obj.get("content"),
+            "due_on": obj.get("due_on"),
+            "notify": obj.get("notify") if obj.get("notify") is not None else False
         })
         return _obj
 

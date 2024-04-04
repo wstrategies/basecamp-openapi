@@ -6,15 +6,15 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** |  | 
-**status** | **str** |  | 
+**status** | **str** |  | [optional] 
 **visible_to_clients** | **bool** |  | [optional] 
-**created_at** | **datetime** |  | 
-**updated_at** | **datetime** |  | 
-**title** | **str** |  | 
+**created_at** | **datetime** |  | [optional] 
+**updated_at** | **datetime** |  | [optional] 
+**title** | **str** |  | [optional] 
 **inherits_status** | **bool** |  | [optional] 
-**type** | **str** |  | 
-**url** | **str** |  | 
-**app_url** | **str** |  | 
+**type** | **str** |  | [optional] 
+**url** | **str** |  | [optional] 
+**app_url** | **str** |  | [optional] 
 **bookmark_url** | **str** |  | [optional] 
 **subscription_url** | **str** |  | [optional] 
 **bucket** | [**Bucket**](Bucket.md) |  | [optional] 

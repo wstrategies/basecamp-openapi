@@ -63,27 +63,6 @@ class TestProject(unittest.TestCase):
         else:
             return Project(
                 id = 56,
-                status = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                name = '',
-                description = '',
-                purpose = '',
-                clients_enabled = True,
-                bookmark_url = '',
-                url = '',
-                app_url = '',
-                dock = [
-                    basecamp4_python_sdk.models.dock_item.DockItem(
-                        id = 56, 
-                        title = '', 
-                        name = '', 
-                        enabled = True, 
-                        position = 56, 
-                        url = '', 
-                        app_url = '', )
-                    ],
-                bookmarked = True,
         )
         """
 

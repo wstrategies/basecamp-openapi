@@ -33,14 +33,14 @@ class Person(BaseModel):
     """ # noqa: E501
     id: StrictInt
     attachable_sgid: Optional[StrictStr] = None
-    name: StrictStr
-    email_address: StrictStr
-    personable_type: StrictStr
+    name: Optional[StrictStr] = None
+    email_address: Optional[StrictStr] = None
+    personable_type: Optional[StrictStr] = None
     title: Optional[StrictStr] = None
     bio: Optional[StrictStr] = None
     location: Optional[StrictStr] = None
-    created_at: datetime
-    updated_at: datetime
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
     admin: Optional[StrictBool] = None
     owner: Optional[StrictBool] = None
     client: Optional[StrictBool] = None

@@ -6,18 +6,18 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **id** | **int** | Unique identifier for the project | 
-**status** | **str** | Current status of the project | 
-**created_at** | **datetime** | Timestamp of project creation | 
-**updated_at** | **datetime** | Timestamp of last project update | 
-**name** | **str** | Name of the project | 
-**description** | **str** | Detailed description of the project | 
-**purpose** | **str** | Purpose of the project | 
-**clients_enabled** | **bool** | Indicates if clients are enabled for the project | 
-**bookmark_url** | **str** | URL for bookmarking the project | 
-**url** | **str** | API URL for the project | 
-**app_url** | **str** | Web application URL for the project | 
-**dock** | [**List[DockItem]**](DockItem.md) | Collection of dock items associated with the project | 
-**bookmarked** | **bool** | Indicates if the project is bookmarked | 
+**status** | **str** | Current status of the project | [optional] 
+**created_at** | **datetime** | Timestamp of project creation | [optional] 
+**updated_at** | **datetime** | Timestamp of last project update | [optional] 
+**name** | **str** | Name of the project | [optional] 
+**description** | **str** | Detailed description of the project | [optional] 
+**purpose** | **str** | Purpose of the project | [optional] 
+**clients_enabled** | **bool** | Indicates if clients are enabled for the project | [optional] 
+**bookmark_url** | **str** | URL for bookmarking the project | [optional] 
+**url** | **str** | API URL for the project | [optional] 
+**app_url** | **str** | Web application URL for the project | [optional] 
+**dock** | [**List[DockItem]**](DockItem.md) | Collection of dock items associated with the project | [optional] 
+**bookmarked** | **bool** | Indicates if the project is bookmarked | [optional] 
 
 ## Example
 

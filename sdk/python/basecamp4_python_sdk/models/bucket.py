@@ -19,7 +19,7 @@ import re  # noqa: F401
 import json
 
 
-from typing import Any, ClassVar, Dict, List
+from typing import Any, ClassVar, Dict, List, Optional
 from pydantic import BaseModel, StrictInt, StrictStr
 try:
     from typing import Self
@@ -31,8 +31,8 @@ class Bucket(BaseModel):
     Bucket
     """ # noqa: E501
     id: StrictInt
-    name: StrictStr
-    type: StrictStr
+    name: Optional[StrictStr] = None
+    type: Optional[StrictStr] = None
     __properties: ClassVar[List[str]] = ["id", "name", "type"]
 
     model_config = {

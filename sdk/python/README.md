@@ -76,14 +76,17 @@ configuration = basecamp4_python_sdk.Configuration(
 with basecamp4_python_sdk.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = basecamp4_python_sdk.DefaultApi(api_client)
+    project_id = 56 # int | The project ID.
+    column_id = 56 # int | The column ID.
+    card_create_request = basecamp4_python_sdk.CardCreateRequest() # CardCreateRequest | 
 
     try:
-        # Get authorization
-        api_response = api_instance.get_authorization()
-        print("The response of DefaultApi->get_authorization:\n")
+        # Create a card
+        api_response = api_instance.create_card_table_card(project_id, column_id, card_create_request)
+        print("The response of DefaultApi->create_card_table_card:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DefaultApi->get_authorization: %s\n" % e)
+        print("Exception when calling DefaultApi->create_card_table_card: %s\n" % e)
 
 ```
 
@@ -93,11 +96,14 @@ All URIs are relative to *https://3.basecampapi.com/9999999*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
+*DefaultApi* | [**create_card_table_card**](docs/DefaultApi.md#create_card_table_card) | **POST** /buckets/{project_id}/card_tables/lists/{column_id}/cards.json | Create a card
 *DefaultApi* | [**get_authorization**](docs/DefaultApi.md#get_authorization) | **GET** /authorization.json | Get authorization
 *DefaultApi* | [**get_card_table**](docs/DefaultApi.md#get_card_table) | **GET** /buckets/{project_id}/card_tables/{card_table_id}.json | Get card table
-*DefaultApi* | [**get_card_table_cards**](docs/DefaultApi.md#get_card_table_cards) | **GET** /buckets/{project_id}/card_tables/lists/{card_table_column_id}/cards.json | Get card table cards
-*DefaultApi* | [**get_card_table_column**](docs/DefaultApi.md#get_card_table_column) | **GET** /buckets/{project_id}/card_tables/columns/{card_table_column_id}.json | Get card table column
+*DefaultApi* | [**get_card_table_cards**](docs/DefaultApi.md#get_card_table_cards) | **GET** /buckets/{project_id}/card_tables/lists/{column_id}/cards.json | Get card table cards
+*DefaultApi* | [**get_card_table_column**](docs/DefaultApi.md#get_card_table_column) | **GET** /buckets/{project_id}/card_tables/columns/{column_id}.json | Get card table column
 *DefaultApi* | [**get_projects**](docs/DefaultApi.md#get_projects) | **GET** /projects.json | Get projects
+*DefaultApi* | [**move_card_table_card**](docs/DefaultApi.md#move_card_table_card) | **POST** /buckets/{project_id}/card_tables/cards/{card_id}/moves.json | Move a card
+*DefaultApi* | [**update_card_table_card**](docs/DefaultApi.md#update_card_table_card) | **PUT** /buckets/{project_id}/card_tables/cards/{card_id}.json | Update a card
 
 
 ## Documentation For Models
@@ -105,9 +111,12 @@ Class | Method | HTTP request | Description
  - [Account](docs/Account.md)
  - [Authorization](docs/Authorization.md)
  - [Bucket](docs/Bucket.md)
+ - [CardCreateRequest](docs/CardCreateRequest.md)
+ - [CardMoveRequest](docs/CardMoveRequest.md)
  - [CardTable](docs/CardTable.md)
  - [CardTableCard](docs/CardTableCard.md)
  - [CardTableColumn](docs/CardTableColumn.md)
+ - [CardUpdateRequest](docs/CardUpdateRequest.md)
  - [Company](docs/Company.md)
  - [DockItem](docs/DockItem.md)
  - [Identity](docs/Identity.md)

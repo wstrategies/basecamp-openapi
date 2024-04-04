@@ -62,11 +62,6 @@ class TestPerson(unittest.TestCase):
         else:
             return Person(
                 id = 56,
-                name = '',
-                email_address = '',
-                personable_type = '',
-                created_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
-                updated_at = datetime.datetime.strptime('2013-10-20 19:20:30.00', '%Y-%m-%d %H:%M:%S.%f'),
         )
         """
 

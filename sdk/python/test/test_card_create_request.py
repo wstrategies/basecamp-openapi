@@ -16,10 +16,10 @@
 import unittest
 import datetime
 
-from basecamp4_python_sdk.models.bucket import Bucket
+from basecamp4_python_sdk.models.card_create_request import CardCreateRequest
 
-class TestBucket(unittest.TestCase):
-    """Bucket unit test stubs"""
+class TestCardCreateRequest(unittest.TestCase):
+    """CardCreateRequest unit test stubs"""
 
     def setUp(self):
         pass
@@ -27,28 +27,29 @@ class TestBucket(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def make_instance(self, include_optional) -> Bucket:
-        """Test Bucket
+    def make_instance(self, include_optional) -> CardCreateRequest:
+        """Test CardCreateRequest
             include_option is a boolean, when False only required
             params are included, when True both required and
             optional params are included """
-        # uncomment below to create an instance of `Bucket`
+        # uncomment below to create an instance of `CardCreateRequest`
         """
-        model = Bucket()
+        model = CardCreateRequest()
         if include_optional:
-            return Bucket(
-                id = 56,
-                name = '',
-                type = ''
+            return CardCreateRequest(
+                title = '',
+                content = '',
+                due_on = datetime.datetime.strptime('1975-12-30', '%Y-%m-%d').date(),
+                notify = True
             )
         else:
-            return Bucket(
-                id = 56,
+            return CardCreateRequest(
+                title = '',
         )
         """
 
-    def testBucket(self):
-        """Test Bucket"""
+    def testCardCreateRequest(self):
+        """Test CardCreateRequest"""
         # inst_req_only = self.make_instance(include_optional=False)
         # inst_req_and_optional = self.make_instance(include_optional=True)
 
